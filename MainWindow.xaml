@@ -73,7 +73,7 @@
                                FontWeight="DemiBold"
                                Padding="5"/>
                 <StatusBarItem HorizontalAlignment="Right"
-                               Content="Developed By KingZeus"
+                               Content="Developed By Mujeeb Ishaq"
                                Margin="0 0 10 0"
                                FontWeight="DemiBold"/>
             </StatusBar>
