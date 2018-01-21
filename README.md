@@ -3,7 +3,11 @@
 Phone Book Application made in C#/WPF. Offers ability to Add and Remove phone records from a database. 
 
 1 - You can add a contact name and contact number.
+
+
 2 - You can delete contact number.
+
+
 
 #2 *How it looks?*
 ======
