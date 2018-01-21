@@ -15,8 +15,14 @@ namespace PhoneBookAlpha
         }
         private void saveData_Click_1(object sender, RoutedEventArgs e)
         {
-            string Name = ContactName.Text;
-            string Number = ContactNumber.Text;
+            string Name = ContactName.Text.ToString().ToLower();
+            string Number = ContactNumber.Text.ToString().ToLower();
+
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Number))
+            {
+                MessageBox.Show("Name and Number field must be filled");
+                return;
+            }
 
             AddData(Name, Number);
 

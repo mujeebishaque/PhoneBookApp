@@ -1,6 +1,8 @@
-﻿using System.Configuration;
+﻿using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -11,7 +13,7 @@ namespace PhoneBookAlpha
     /// Table => Should have fields like, Id, Name, Contact Number
     /// App => Menu contains an Action Tab ( INSERT, DELETE And Exit ) and a Help Tab with item as About Us.
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public MainWindow()
         {
@@ -19,7 +21,18 @@ namespace PhoneBookAlpha
             dataGrid.CanUserAddRows = false;
             dataGrid.CanUserDeleteRows = false;
             OpenConnection();
+            OnPropertyChanged();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string caller = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(caller));
+            }
+        }
+
         public void OpenConnection()
         {
 
@@ -45,7 +58,7 @@ namespace PhoneBookAlpha
             // Insert Data
             Window1 InsertDataWindow = new Window1();
             InsertDataWindow.Show();
-
+            OnPropertyChanged();
         }
 
         private async void MenuItem_Click_2(object sender, RoutedEventArgs e)
@@ -53,7 +66,7 @@ namespace PhoneBookAlpha
             //About Us
             await Task.Run(() =>
             {
-                MessageBox.Show(" Programmed By Mujeeb Ishaq" + "\n\n Email : " + "mujeebishaqg@gmail.com");
+                MessageBox.Show(" Programmed By Abdul Mujeeb" + "\n\n Email : " + "mujeebishaqg@gmail.com");
             });
         }
 
@@ -62,7 +75,7 @@ namespace PhoneBookAlpha
             // Delete the Item.
             DeleteItemWindow Box = new DeleteItemWindow();
             Box.Show();
-
+            OnPropertyChanged();
         }
     }
 }
